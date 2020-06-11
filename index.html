@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">        
+        <title>Variáveis</title>
+    </head>
+    <body>
+        <section>
+            <div id="container1">
+                <table id="tabela">
+                    <thead id="cabecalho">
+                        <tr>
+                            <th>Código</th>
+                            <th>Preço unitário</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corptab">
+                        <tr class="produto">
+                            <td class="codigo">ABCD</td>
+                            <td class="preco">R$ 5,30</td>
+                        </tr>
+                        <tr class="produto">
+                            <td class="codigo">XYPK</td>
+                            <td class="preco">R$ 6,00</td>
+                        </tr>
+                        <tr class="produto">
+                            <td class="codigo">KLMP</td>
+                            <td class="preco">R$ 3,20</td>
+                        </tr>
+                        <tr class="produto">
+                            <td class="codigo">QRST</td>
+                            <td class="preco">R$ 2,50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+        </section>
+        
+        <section>
+            <div id="container2">
+                <input type="text" name="campo" id="campo" class="campo" placeholder="Digite o código do item aqui">
+                <input type="number" name="unidades" id="unidades" placeholder="Unidades"><br>
+                <button id="botao" name="botao" class="botao">Calcular</button>
+            </div>
+            <div>
+                <input type="text" name="resultado" id="resultado" disabled>
+            </div>
+        </section>
+    <!--    
+    <script>
+
+        var num1;
+        var num2 = 5;
+        var num3 = 10;
+        var num4 = 4;
+        var granadiego = 1000;
+        var pc = 1000;
+        var clima = 'chuva';
+        var vaganocarro = 'nao';
+
+        // = atribuição
+        // == igualdade
+        // != diferente
+        // ! negação
+        // > maior
+        // < menor
+        // >= maior ou igual
+        // <= menor ou igual
+        // || ou
+        // && e
+        
+        //VOU À PRAIA
+
+        if(clima == 'sol'  || vaganocarro == 'tem'){
+            
+            console.log("Oba! Vou à praia!");
+            console.log("Diego agora ficou com",granadiego-80);
+        }
+
+        else{
+            console.log("Deixa de ser mongolão");            
+        }
+
+
+        //Faça um programa que calcule a média aritimética de 3 números e exiba o resultado
+
+        var numb1 = 12;
+        var numb2 = 3;
+        var numb3 = 29;
+
+        var media = (numb1+numb2+numb3)/3;
+
+        console.log(media);
+
+    </script>-->
+
+        <script>
+            /*Um vendedor precisa de um algoritmo que calcule o preço total devido por um cliente. O
+            algoritmo deve receber o código de um produto e a quantidade comprada e calcular o
+            preço total, usando a tabela abaixo. Mostre uma mensagem no caso de código inválido.
+
+            Código Preço Unitário
+            'ABCD' R$ 5,30
+            'XYPK' R$ 6,00
+            'KLMP' R$ 3,20
+            'QRST' R$ 2,50
+            */
+
+            var body = document.querySelector('body');
+            var cad = document.querySelector("#botao");
+                  
+            cad.onclick = function naosei() {
+                var campo = document.querySelector("#campo").value;
+                var unidades = document.querySelector("#unidades").value;
+                var produtos = document.querySelectorAll(".produto");
+                campo = '';
+                for(i=0; i<produtos.length; i++){
+                    var produto = produtos[i];
+                    var codigo = produto.querySelector(".codigo").textContent;
+                    var preco = produto.querySelector(".preco").textContent;                        
+                    var teste = preco.substring(3,7);                                                
+                    var digitado = new RegExp(campo, 'i');
+                
+                    
+                    if(!digitado.test(codigo)){ 
+                        alert("Código do produto não existe!");
+                                                                           
+                    }else{
+                        console.log("sou igual");
+                        var certo = parseFloat(teste.replace(',', '.'));
+                        var resultado = parseFloat(certo) * parseInt(unidades);
+                        // Jeito Certo
+                            document.querySelector("#resultado").setAttribute("value",resultado);
+                        console.log(resultado);
+                        // Jeito errado
+                        var total = document.createElement('div');
+                        total.style.width = '98px';
+                        total.style.height = '98px';
+                        total.style.backgroundColor = 'pink';
+                        total.textContent = resultado;
+                        body.appendChild(total);                                                     
+                    }
+                }              
+            }
+        </script>   
+    </body>
+</html>
